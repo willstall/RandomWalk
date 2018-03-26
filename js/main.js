@@ -5,6 +5,10 @@ function main()
 	// Setup
 	setup();
 
+	// Console
+	terminal = new Terminal();
+	stage.addChild( terminal );
+	
 	// Keyboard
 	document.onkeydown = keyPressed;
 	
