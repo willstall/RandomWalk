@@ -7,7 +7,8 @@
         this.isDown = startDown;
         this.lineHeight = 13;
         this.y = - h;
-
+        this.autoOpenOnLog = true;
+        
         if(startDown)
             this.open();
 
@@ -19,10 +20,14 @@
 		this.txt.x = 20;
 		this.txt.y = this.height - 20;
 		this.txt.color ="#FFFFFF";
-		this.txt.text = "testing";
+		this.txt.text = "";
+		
         this.txt.textBaseline = "bottom";
         this.txt.lineHeight = this.lineHeight;
 
+
+        this.updateTerminal("console");
+        
         this.addChild( this.background,this.txt );
 
         this.takeOverErrors();
@@ -76,6 +81,9 @@
                     // do sneaky stuff
                     var message = Array.prototype.slice.apply(arguments).join(' ');
                     
+                    if(scope.autoOpenOnLog)
+                      scope.open();
+                      
                     scope.updateTerminal( message );
                     if (original.apply){
                         // Do this for normal browsers
