@@ -30,11 +30,13 @@
         
         this.addChild( this.background,this.txt );
 
+        this.on("mousedown", this.mouseDown.bind(this));
         this.takeOverErrors();
         this.takeOverConsole();
         
         window.addEventListener("keydown",this.keyPressed.bind(this));
 
+        console.log("test");
         //document.onkeydown = onkeydown.bind(this);;
     }
 
@@ -46,6 +48,10 @@
             {
                 this.toggle();
             }
+        }
+        p.mouseDown = function( e )
+        {
+            this.toggle();
         }
         p.toggle = function()
         {
