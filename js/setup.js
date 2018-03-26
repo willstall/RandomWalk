@@ -40,8 +40,8 @@ function setup()
     //window.addEventListener( 'resize', rescale, false );
 
     // Lock Orientation
-    orient();
-    window.addEventListener('deviceorientation', orient, this);     
+    //orient();
+    //window.addEventListener('deviceorientation', orient, this);     
 }
 
 function tick( event )
