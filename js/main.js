@@ -20,7 +20,7 @@ function main()
 function keyPressed( event )
 {
 	//Keycodes found at http://keycode.info
-	if( event.keyCode == 32 )
+	if( event.keyCode == 13 )	// enter
 	{
 		console.log("Clear Drawing");
 		drawing.graphics.clear();
@@ -29,14 +29,23 @@ function keyPressed( event )
 
 function update( event )
 {
-	var x = getRandomInt(-1,1);
-	var y = getRandomInt(-1,1);
-		
+	var x = getRandomInt(-1,1) * 3;
+	var y = getRandomInt(-1,1) * 3;
+	var c = getRandomInt(100,255);
+	
+	var cString = "rgba("+c+","+c+","+0.0+",1.0)";
+	//var fadeArea = 500;
+	//drawing.graphics.beginFill("rgba(255,255,255,0.01)");
+	//drawing.graphics.drawRect(fadeArea*-0.5,fadeArea*-0.5,fadeArea,fadeArea);	
+
+	//drawing.graphics.beginFill(cString);
+	drawing.graphics.setStrokeStyle(1);
+	drawing.graphics.beginStroke(cString);
+	drawing.graphics.moveTo(drawing.drawX,drawing.drawY);
 	drawing.drawX += x;
 	drawing.drawY += y;
-	drawing.graphics.beginFill("#FF0000");
-	//drawing.graphics.moveTo(drawing.drawX,drawing.drawY);
-	drawing.graphics.drawCircle(drawing.drawX,drawing.drawY,3);
+	drawing.graphics.lineTo(drawing.drawX,drawing.drawY);	
+	//drawing.graphics.drawCircle(drawing.drawX,drawing.drawY,3);
 	drawing.graphics.endFill();
 	
 	//	console.log("update");

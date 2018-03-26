@@ -19,7 +19,7 @@ function setup()
 
     // Debug
     debug = new createjs.Text();
-    debug.log( "Debug" );
+    //debug.log( "Debug" );
 
     // Stage
     stage = new createjs.Stage( canvas );
