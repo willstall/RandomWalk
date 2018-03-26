@@ -6,6 +6,7 @@
         this.height = h;
         this.isDown = startDown;
         this.lineHeight = 13;
+        this.tabSize = 50;
         this.y = - h;
         this.autoOpenOnLog = true;
         
@@ -14,7 +15,18 @@
 
         this.background = new createjs.Shape();
 		this.background.graphics.beginFill("#222222").drawRect(0,0,stage.width,this.height);
-		this.background.alpha = 0.9;
+        this.background.alpha = 0.9;
+        
+        this.tab = new createjs.Shape();
+        this.tab.graphics.beginFill("#222222").drawRoundRectComplex(0,0,this.tabSize ,this.tabSize * 0.5 ,0,0,5,5);
+        this.tab.alpha = 0.5;                
+        this.tab.x = 20;
+        this.tab.y = this.height;
+
+        this.icon = new createjs.Shape();
+        this.icon.graphics.beginFill("#FFFFFF").drawCircle(0,0,3);
+        this.icon.x = this.tab.x + this.tabSize * 0.5;
+        this.icon.y = this.tab.y + this.tabSize * 0.25;
 
 	    this.txt = new createjs.Text();
 		this.txt.x = 20;
@@ -28,7 +40,7 @@
 
         this.updateTerminal("console");
         
-        this.addChild( this.background,this.txt );
+        this.addChild( this.background, this.tab, this.icon, this.txt );
 
         this.on("mousedown", this.mouseDown.bind(this));
         this.takeOverErrors();
