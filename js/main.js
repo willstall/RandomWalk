@@ -1,3 +1,5 @@
+var drawing;
+
 function main()
 {
 	// Setup
@@ -5,48 +7,14 @@ function main()
 
 	// Keyboard
 	document.onkeydown = keyPressed;
-
-	// Components
-//	var spinComponent = new SpinComponent();
-//		spinComponent.targetRotation = 3600;
-//		spinComponent.ease = 0.01;
-
-	var positionComponent = new OscillatePositionComponent();
-		positionComponent.amplitude.y = 50;
-	var lookAtComponent = new LookAtComponent();
-	var rotateComponent = new RotateComponent( .5 );
-//		rotateComponent.increment = 0.5
-
-	// Display 
-	var test1 = new createjs.Shape();
-		test1.graphics.beginFill("DeepSkyBlue").rect(-25,-25,50,50);
-		test1.rotation = 45;
-		test1.x = 60;
-		test1.AddComponent( new OscillateScaleComponent(20, new createjs.Point(1,0) ) );
-		test1.AddComponent( new SpinComponent(0.01,3600) );
-		test1.SetComponentsUpdate( true );
 	
-	var test2 = new createjs.Shape();
-		test2.graphics.beginFill("Red").drawCircle(0, 0, 10);
-		test2.AddComponent( positionComponent );
-		test2.SetComponentsUpdate( true );
-
-	var test3 = new createjs.Shape();
-		test3.x = -60;
-		test3.graphics.beginFill("Green").rect(-30, -25, 60,50);
-		test3.AddComponent( lookAtComponent );
-		test3.SetComponentsUpdate( true );
-		
-		lookAtComponent.target = test2;
-		//test2.on("tick", update);
-
-	// Extension
-  	var extend_test = new ExtendedContainer();
-		extend_test.output();
-
-	container.addChild(test1,test2,test3);
-	container.AddComponent( rotateComponent );
-	container.SetComponentsUpdate( true );
+	// Drawing
+	drawing = new createjs.Shape();
+	drawing.on("tick", update);
+	drawing.drawX = drawing.drawY = 0;
+	
+	// Add
+	container.addChild( drawing );	
 }
 
 function keyPressed( event )
@@ -54,11 +22,27 @@ function keyPressed( event )
 	//Keycodes found at http://keycode.info
 	if( event.keyCode == 32 )
 	{
-		console.log("testing");
+		console.log("Clear Drawing");
+		drawing.graphics.clear();
 	}
 }
 
 function update( event )
 {
-	console.log("update");
+	var x = getRandomInt(-1,1);
+	var y = getRandomInt(-1,1);
+		
+	drawing.drawX += x;
+	drawing.drawY += y;
+	drawing.graphics.beginFill("#FF0000");
+	//drawing.graphics.moveTo(drawing.drawX,drawing.drawY);
+	drawing.graphics.drawCircle(drawing.drawX,drawing.drawY,3);
+	drawing.graphics.endFill();
+	
+	//	console.log("update");
+}
+
+function getRandomInt(min, max)
+{
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
