@@ -10,7 +10,7 @@ function main()
 	stage.addChild( terminal );
 	
 	// Keyboard
-	document.onkeydown = keyPressed;
+	//document.onkeydown = keyPressed;
 	
 	// Drawing
 	drawing = new createjs.Shape();
@@ -33,7 +33,8 @@ function keyPressed( event )
 
 function update( event )
 {
-	var step = 10;
+	var s = Math.round(Math.random());
+	var step = (s==1) ? (5) :(20);
 	var x = getRandomInt(-1,1) * step;
 	var y = getRandomInt(-1,1) * step;
 	var c = getRandomInt(100,255);
@@ -53,6 +54,19 @@ function update( event )
 	//drawing.graphics.drawCircle(drawing.drawX,drawing.drawY,3);
 	drawing.graphics.endFill();
 	
+	if(drawing.drawX >= stage.width * .5)
+	{
+		drawing.drawX = stage.width * -.5;
+	}else if( drawing.drawX <= stage.width * -.5){
+		drawing.drawX = stage.width * 0.5;
+	}
+	
+	if(drawing.drawY >= stage.height * .5)
+	{
+		drawing.drawY = stage.height * -0.5;
+	}else if( drawing.drawY <= stage.height * -0.5){
+		drawing.drawY = stage.height * 0.5;
+	}
 	//	console.log("update");
 }
 
