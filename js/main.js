@@ -33,8 +33,9 @@ function keyPressed( event )
 
 function update( event )
 {
-	var x = getRandomInt(-1,1) * 3;
-	var y = getRandomInt(-1,1) * 3;
+	var step = 10;
+	var x = getRandomInt(-1,1) * step;
+	var y = getRandomInt(-1,1) * step;
 	var c = getRandomInt(100,255);
 	
 	var cString = "rgba("+c+","+c+","+0.0+",1.0)";
