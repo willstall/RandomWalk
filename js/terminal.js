@@ -48,7 +48,6 @@
         
         window.addEventListener("keydown",this.keyPressed.bind(this));
 
-        console.log("test");
         //document.onkeydown = onkeydown.bind(this);;
     }
 

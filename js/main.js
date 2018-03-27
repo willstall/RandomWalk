@@ -19,6 +19,7 @@ function main()
 	
 	// Add
 	container.addChild( drawing );	
+	//console.log("jude");
 }
 
 function keyPressed( event )
@@ -34,7 +35,7 @@ function keyPressed( event )
 function update( event )
 {
 	var s = Math.round(Math.random());
-	var step = (s==1) ? (5) :(20);
+	var step = (s==1) ? (5) :(50);
 	var x = getRandomInt(-1,1) * step;
 	var y = getRandomInt(-1,1) * step;
 	var c = getRandomInt(100,255);
