@@ -6,8 +6,8 @@ function main()
 	setup();
 
 	// Console
-	terminal = new Terminal();
-	stage.addChild( terminal );
+	//terminal = new Terminal();
+	//stage.addChild( terminal );
 	
 	// Keyboard
 	//document.onkeydown = keyPressed;
