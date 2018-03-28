@@ -1,25 +1,41 @@
 var drawing;
+var target;
 
 function main()
 {
 	// Setup
 	setup();
-
-	// Console
-	//terminal = new Terminal();
-	//stage.addChild( terminal );
 	
 	// Keyboard
-	//document.onkeydown = keyPressed;
+	document.onkeydown = keyPressed;
 	
+	// Mouse
+	document.onmousemove = mouseMoved;
 	// Drawing
 	drawing = new createjs.Shape();
 	drawing.on("tick", update);
 	drawing.drawX = drawing.drawY = 0;
 	
+	// Target
+	target = new createjs.Shape();
+	target.graphics.setStrokeStyle(1)
+		.beginStroke("#000000")
+		.moveTo(-stage.width*2,0)
+		.lineTo(stage.width*2,0)
+		.moveTo(0,-stage.height*2.0)
+		.lineTo(0,stage.height*2.0)
+		.endStroke();
+	target.alpha = 0.5;
 	// Add
 	container.addChild( drawing );	
+	stage.addChild( target );
 	//console.log("jude");
+}
+
+function mouseMoved( event )
+{
+	target.x = event.pageX;
+	target.y = event.clientY;
 }
 
 function keyPressed( event )
@@ -34,10 +50,23 @@ function keyPressed( event )
 
 function update( event )
 {
+	var targetPosition = target.localToLocal( drawing.drawX, drawing.drawY, drawing);
+		//targetPosition.x /= drawing.drawX;
+		//targetPosition.y /= drawing.drawY;
+		targetPosition.normalize(1);
+		targetPosition.x = Math.round( targetPosition.x );
+		targetPosition.y = Math.round( targetPosition.y );
+
+	// console.log(targetPosition);
+
 	var s = Math.round(Math.random());
 	var step = (s==1) ? (5) :(50);
+	//var step = (s==1) ? (1) :(5);
+	var homingStep = 5;
 	var x = getRandomInt(-1,1) * step;
+		x += targetPosition.x * homingStep;
 	var y = getRandomInt(-1,1) * step;
+		y += targetPosition.y * homingStep;
 	var c = getRandomInt(100,255);
 	
 	var cString = "rgba("+c+","+c+","+0.0+",1.0)";
