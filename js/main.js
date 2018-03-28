@@ -50,7 +50,7 @@ function keyPressed( event )
 
 function update( event )
 {
-	var targetPosition = target.localToLocal( drawing.drawX, drawing.drawY, drawing);
+	var targetPosition = drawing.localToLocal( drawing.drawX, drawing.drawY, target);
 		//targetPosition.x /= drawing.drawX;
 		//targetPosition.y /= drawing.drawY;
 		targetPosition.normalize(1);
@@ -61,12 +61,12 @@ function update( event )
 
 	var s = Math.round(Math.random());
 	var step = (s==1) ? (5) :(50);
-	//var step = (s==1) ? (1) :(5);
-	var homingStep = 5;
+	// var step = (s==1) ? (1) :(5);
+	var homingStep = 25;
 	var x = getRandomInt(-1,1) * step;
-		x += targetPosition.x * homingStep;
+		x -= targetPosition.x * homingStep;
 	var y = getRandomInt(-1,1) * step;
-		y += targetPosition.y * homingStep;
+		y -= targetPosition.y * homingStep;
 	var c = getRandomInt(100,255);
 	
 	var cString = "rgba("+c+","+c+","+0.0+",1.0)";
