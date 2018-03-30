@@ -74,15 +74,14 @@ function update( event )
 	//drawing.graphics.beginFill("rgba(255,255,255,0.01)");
 	//drawing.graphics.drawRect(fadeArea*-0.5,fadeArea*-0.5,fadeArea,fadeArea);	
 
-	//drawing.graphics.beginFill(cString);
-	drawing.graphics.setStrokeStyle(1);
-	drawing.graphics.beginStroke(cString);
-	drawing.graphics.moveTo(drawing.drawX,drawing.drawY);
-	drawing.drawX += x;
-	drawing.drawY += y;
-	drawing.graphics.lineTo(drawing.drawX,drawing.drawY);	
-	//drawing.graphics.drawCircle(drawing.drawX,drawing.drawY,3);
-	drawing.graphics.endFill();
+
+	// drawing.graphics.setStrokeStyle(1);
+	// drawing.graphics.beginStroke(cString);
+	// drawing.graphics.moveTo(drawing.drawX,drawing.drawY);
+	// drawing.drawX += x;
+	// drawing.drawY += y;
+	// drawing.graphics.lineTo(drawing.drawX,drawing.drawY);	
+	// drawing.graphics.endFill();
 	
 	if(drawing.drawX >= stage.width * .5)
 	{

@@ -19,7 +19,7 @@ var btn = document.getElementById("t_input");
         e.preventDefault();
         console.log(t.value);
         try {
-            eval(t.value);
+            eval.bind(this)(t.value);
         }
         catch(err) {
             console.warn(err);
