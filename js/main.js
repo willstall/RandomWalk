@@ -30,6 +30,9 @@ function main()
 	container.addChild( drawing );	
 	stage.addChild( target );
 	//console.log("jude");
+
+	// Instructions
+	console.log("Hey there! \n\nThis is a lot of crap.");
 }
 
 function mouseMoved( event )

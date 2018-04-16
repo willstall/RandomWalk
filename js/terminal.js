@@ -17,17 +17,21 @@ var btn = document.getElementById("t_input");
     btn.onsubmit = function(e)
     {
         e.preventDefault();
-        console.log(t.value);
-        try {
-            eval.bind(this)(t.value);
-        }
-        catch(err) {
-            console.warn(err);
-            return;
-        }				
-        t.value = "";				
+		executeCommand(t.value);
     }
 
+var executeCommand = function(s)
+{
+    console.log(s);
+    try {
+        eval.bind(this)(s);
+    }
+    catch(err) {
+        console.warn(err);
+        return;
+    }				
+    t.value = "";        
+}
 var h = document.getElementById("header");
 
 var showTerminal = function()
@@ -65,7 +69,7 @@ var takeOverErrors = function()
     }  
 }
 
-var autoOpenOnLog = true;
+var autoOpenOnLog = false;
 
 var takeOverConsole = function()
 {
